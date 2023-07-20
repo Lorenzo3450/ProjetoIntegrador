@@ -1,0 +1,98 @@
+package Principal.Telas;
+
+import javax.swing.JOptionPane;
+
+import Principal.Main;
+import javafx.fxml.FXML;
+import javafx.scene.control.TextField;
+import javafx.scene.input.MouseEvent;
+
+public class TelaDeCadastro2Controller {
+
+    @FXML
+    private TextField TxtBairro;
+
+    @FXML
+    private TextField TxtCep;
+
+    @FXML
+    private TextField TxtCidade;
+
+    @FXML
+    private TextField TxtCpf;
+
+    @FXML
+    private TextField TxtDataDeNascimento;
+
+    @FXML
+    private TextField TxtNome;
+
+    @FXML
+    private TextField TxtRuaCasaComplemento;
+
+    @FXML
+    private TextField TxtTelefone;
+
+    @FXML
+    void BtnFinalizar(MouseEvent event) throws Exception {
+    	
+    	if(TxtBairro.getText() != "" && TxtCep.getText() != "" && 
+    			TxtCidade.getText() != "" && TxtCpf.getText() != "" &&
+    			TxtDataDeNascimento.getText() != "" && TxtNome.getText() != "" &&
+    			TxtRuaCasaComplemento.getText() != "" && TxtTelefone.getText() != "") {
+    		
+    		Main.Cena("Login");
+    		
+    		
+    	}else JOptionPane.showMessageDialog(null, "Prencha todos os campos");
+    	
+
+    }
+
+    @FXML
+    void Finalizar(MouseEvent event) throws Exception {
+
+    	if(TxtBairro.getText() != "" && TxtCep.getText() != "" && 
+    			TxtCidade.getText() != "" && TxtCpf.getText() != "" &&
+    			TxtDataDeNascimento.getText() != "" && TxtNome.getText() != "" &&
+    			TxtRuaCasaComplemento.getText() != "" && TxtTelefone.getText() != "") {
+    		
+    		Main.Cena("Login");
+    		
+    		
+    	}else JOptionPane.showMessageDialog(null, "Prencha todos os campos");
+    	
+
+    }
+
+    @FXML
+    void simbolo(MouseEvent event) throws Exception {
+
+    	if(TxtBairro.getText() != "" && TxtCep.getText() != "" && 
+    			TxtCidade.getText() != "" && TxtCpf.getText() != "" &&
+    			TxtDataDeNascimento.getText() != "" && TxtNome.getText() != "" &&
+    			TxtRuaCasaComplemento.getText() != "" && TxtTelefone.getText() != "") {
+    		
+    		Main.Cena("Login");
+    		
+    		
+    	}else JOptionPane.showMessageDialog(null, "Prencha todos os campos");
+    	
+
+    }
+
+    @FXML
+    void vol1(MouseEvent event) throws Exception {
+
+    	Main.Cena("Cadastro");
+    	
+    }
+
+    @FXML
+    void vol2(MouseEvent event) throws Exception {
+    	
+    	Main.Cena("Cadastro");
+    	
+    }
+
+}

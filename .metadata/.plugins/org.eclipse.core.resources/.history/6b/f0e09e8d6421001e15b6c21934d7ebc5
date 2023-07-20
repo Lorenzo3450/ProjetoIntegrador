@@ -1,0 +1,85 @@
+package Principal.Telas;
+
+import javax.swing.JOptionPane;
+
+import Principal.Main;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.PasswordField;
+import javafx.scene.control.TextField;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
+
+public class TelaDeLoginController {
+
+	int index;
+    
+    
+	 @FXML
+	    private Label cadastro;
+
+	    @FXML
+	    private ImageView imbtn;
+
+	    @FXML
+	    private ImageView imlogar;
+
+	    @FXML
+	    private PasswordField psfsenha;
+
+	    @FXML
+	    private TextField txflogin;
+
+	    
+ 
+    @FXML
+    void Logar1(MouseEvent event) throws Exception {
+    	
+    	for(int i=0;i<=TelaDeCadastroController.index;i++) {
+    		if(Main.email[i]==txflogin.getText()&&Main.senha[i]== psfsenha.getText()) {
+    			JOptionPane.showMessageDialog(null, "bem vindo ao sistema");
+    			break;
+    			
+    		}else JOptionPane.showMessageDialog(null, "senha ou login errados");
+    		
+    		
+    	}
+    	
+    	
+    	
+    }
+    
+
+    @FXML
+    void Logar2(MouseEvent event) throws Exception {
+
+    	for(int i=0;i<=TelaDeCadastroController.index;i++) {
+    		if(Main.email[i]==txflogin.getText()&&Main.senha[i]== psfsenha.getText()) {
+    			JOptionPane.showMessageDialog(null, "bem vindo ao sistema");
+    			break;
+    			
+    		}else JOptionPane.showMessageDialog(null, "senha ou login errados");
+    		
+    		
+    	}
+    	
+    	
+    	
+    }
+
+    
+
+    @FXML
+    void clique(MouseEvent event) throws Exception {
+
+    	
+    	Main.Cena("Cadastro");
+    	psfsenha.setText("");
+    	txflogin.setText("");
+    	imlogar.requestFocus();
+    	
+    }
+
+}
