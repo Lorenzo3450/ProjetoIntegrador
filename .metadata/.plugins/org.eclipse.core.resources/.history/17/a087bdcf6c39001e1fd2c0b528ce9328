@@ -1,0 +1,148 @@
+package Principal.Telas;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+
+import javax.swing.JOptionPane;
+
+import BancoDeDados.ConexãoBD;
+import Ferramentas.EfeitoBtn;
+import Ferramentas.TrocaData;
+import Principal.Main;
+import javafx.fxml.FXML;
+import javafx.scene.control.TextField;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseEvent;
+
+public class TelaDeCadastro2Controller {
+
+	EfeitoBtn efeito = new EfeitoBtn();
+	
+    @FXML
+    private TextField TxtBairro;
+    
+    @FXML
+    private ImageView Btnfinal;
+
+    @FXML
+    private TextField TxtCep;
+
+    @FXML
+    private TextField TxtCidade;
+
+    @FXML
+    private TextField TxtCpf;
+
+    @FXML
+    private TextField TxtDataDeNascimento;
+
+    @FXML
+    private TextField TxtNome;
+
+    @FXML
+    private TextField TxtRuaCasaComplemento;
+
+    @FXML
+    private TextField TxtTelefone;
+
+    @FXML
+    void BtnFinalizar(MouseEvent event) throws Exception {
+    	
+    	if(TxtBairro.getText() != "" && TxtCep.getText() != "" && 
+    			TxtCidade.getText() != "" && TxtCpf.getText() != "" &&
+    			TxtDataDeNascimento.getText() != "" && TxtNome.getText() != "" &&
+    			TxtRuaCasaComplemento.getText() != "" && TxtTelefone.getText() != "") {
+    		
+    
+				//cadastro no banco de dados os dados;
+    		
+    			Connection conecao = ConexãoBD.Conexao();
+    			
+    			String ComandoSql1 = " insert into funcionario(nome_completo,cpf,data_nasc,"
+    					+ "telefone, email, senha,cargo) values (?, ?, ?, ?, ?, ?,?)";
+    			
+    			String ComandoSql2 = "insert into endereco(logradouro,bairro,cep,cidade) values (?, ?, ?, ?)";
+    			    			
+    			PreparedStatement stmt1 = conecao.prepareStatement(ComandoSql1);
+    			PreparedStatement stmt2 = conecao.prepareStatement(ComandoSql2);
+    			
+    			stmt1.setString(1, TxtNome.getText());
+    			stmt1.setString(2, TxtCpf.getText());
+    			stmt1.setString(3, TrocaData.trocaData(TxtDataDeNascimento.getText()));
+    			stmt1.setString(4, TxtTelefone.getText());
+    			stmt1.setString(5, TelaDeCadastroController.email);
+    			stmt1.setString(6, TelaDeCadastroController.senha);
+    			stmt1.setString(7, "gerente");
+    			
+    			stmt2.setString(1, TxtRuaCasaComplemento.getText());
+    			stmt2.setString(2, TxtBairro.getText());
+    			stmt2.setString(3, TxtCep.getText());
+    			stmt2.setString(4, TxtCidade.getText());
+
+    			stmt1.execute();
+    			stmt2.execute();
+    			
+    			stmt1.close();
+    			stmt2.close();
+    			conecao.close();
+    			
+    			JOptionPane.showMessageDialog(null, "dados cadastrados com sucesso");
+
+    			
+    	
+    				//troca para tela de login
+    				Main.Cena("Login");
+    		
+    		
+    	}else JOptionPane.showMessageDialog(null, "Prencha todos os campos");
+    	
+
+    }
+
+    
+
+    @FXML
+    void vol1(MouseEvent event) throws Exception {
+
+    	Main.Cena("Cadastro");
+    	
+    }
+
+    @FXML
+    void Entrar1(MouseEvent event) {
+
+    	Btnfinal.setEffect(efeito.Efeito());
+    	
+    }
+
+    @FXML
+    void Sair1(MouseEvent event) {
+
+    	Btnfinal.setEffect(null);
+    	
+    }
+    
+  
+    @FXML
+    void Formataçãodata(KeyEvent event) {
+
+    }
+
+    @FXML
+    void FortmataçaoTelefone(KeyEvent event) {
+
+  	if(TxtTelefone.getText().length()==2) {
+    	String aux = TxtTelefone.getText();	
+  		if(aux.substring(0,1) != "(" || aux.substring(1,2) !=")") {
+    		TxtTelefone.setText("("+TxtTelefone.getText()+")");
+    		System.out.println(aux);
+  		}else TxtTelefone.setText(""); System.out.println(aux);
+    	}
+    	
+    	
+    }
+
+    
+ 
+}

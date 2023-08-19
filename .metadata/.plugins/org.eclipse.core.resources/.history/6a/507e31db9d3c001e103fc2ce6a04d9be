@@ -1,0 +1,51 @@
+package Principal.Telas.Gerente;
+
+import javafx.fxml.FXML;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
+
+public class TabelaFuncionarioController {
+
+    @FXML
+    private ImageView BtnPesquisar;
+
+    @FXML
+    private TableColumn<?, ?> ColunaCargo;
+
+    @FXML
+    private TableColumn<?, ?> ColunaCpf;
+
+    @FXML
+    private TableColumn<?, ?> ColunaNome;
+
+    @FXML
+    private TableColumn<?, ?> ColunaSalario;
+
+    @FXML
+    private TableColumn<?, ?> ColunaTelefone;
+
+    @FXML
+    private TableView<?> Tabela;
+
+    @FXML
+    private TextField TxtEmail;
+
+    @FXML
+    void Filtro(MouseEvent event) {
+
+    }
+
+    @FXML
+    void RemoverFuncionario(MouseEvent event) {
+
+    }
+
+    @FXML
+    void vol1(MouseEvent event) {
+
+    }
+
+}

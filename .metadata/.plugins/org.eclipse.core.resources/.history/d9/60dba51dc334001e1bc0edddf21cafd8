@@ -1,0 +1,87 @@
+package Principal.Telas;
+
+import javax.swing.JOptionPane;
+
+import BancoDeDados.ValidacaoUsuario;
+import Principal.Main;
+import javafx.fxml.FXML;
+import javafx.scene.control.Label;
+import javafx.scene.control.PasswordField;
+import javafx.scene.control.TextField;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
+import Ferramentas.EfeitoBtn;
+
+public class TelaDeLoginController {
+
+		
+		
+    	EfeitoBtn efeito = new EfeitoBtn();
+	
+    	
+	 	@FXML
+	    private Label cadastro;
+
+	    @FXML
+	    private ImageView imbtn;
+
+	    
+	    @FXML
+	    private ImageView imlogar;
+
+	    @FXML
+	    private PasswordField psfsenha;
+
+	    @FXML
+	    private TextField txflogin;
+	    
+	    
+	  
+	    @FXML
+	    void Log1(MouseEvent event) throws Exception{
+
+	    	if(ValidacaoUsuario.ValidaUsuario(txflogin.getText(), psfsenha.getText())==true) {
+	    		JOptionPane.showMessageDialog(null, "Bem vindo ! "+txflogin .getText());
+	    	}else JOptionPane.showMessageDialog(null, "senha incorreta ! "+txflogin .getText());
+	    
+	    	
+	    }
+
+
+    
+
+    @FXML
+    void clique(MouseEvent event) throws Exception {
+
+    	
+    	Main.Cena("Cadastro");
+    	psfsenha.setText("");
+    	txflogin.setText("");
+    	imlogar.requestFocus();
+    	
+    }
+
+    
+    @FXML
+    void entrar1(MouseEvent event) {
+    	
+    	
+    	imbtn.setEffect(efeito.Efeito());
+    	
+    }
+    
+
+    
+    @FXML
+    void sair1(MouseEvent event) {
+    	
+    	imbtn.setEffect(null);
+
+    }
+
+    
+
+    
+
+    
+}
