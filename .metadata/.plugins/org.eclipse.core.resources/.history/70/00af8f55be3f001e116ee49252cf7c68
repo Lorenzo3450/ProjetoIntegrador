@@ -1,0 +1,167 @@
+package Principal.Telas.Gerente;
+
+import Ferramentas.EfeitoBtn;
+import javafx.fxml.FXML;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
+
+public class TelaPrincipalGerenteController {
+
+	EfeitoBtn efeito = new EfeitoBtn();
+
+	
+    @FXML
+    private ImageView BtnProduto;
+
+    @FXML
+    private ImageView BtnRelatorio;
+
+    @FXML
+    private ImageView BtnTabelas;
+
+    @FXML
+    private ImageView BtnVendas;
+
+    @FXML
+    private ImageView btnfuncionario;
+
+    @FXML
+    private AnchorPane painel1;
+
+    @FXML
+    void Entrar(MouseEvent event) {
+
+    	btnfuncionario.setEffect(efeito.Efeito());
+    	
+    }
+
+    @FXML
+    void Entrar2(MouseEvent event) {
+
+    	BtnProduto.setEffect(efeito.Efeito());
+    	
+    }
+
+    @FXML
+    void Entrar3(MouseEvent event) {
+    	
+    	BtnVendas.setEffect(efeito.Efeito());
+    	
+    }
+
+    @FXML
+    void Entrar4(MouseEvent event) {
+
+    	BtnRelatorio.setEffect(efeito.Efeito());
+    	
+    }
+
+    @FXML
+    void Entrar5(MouseEvent event) {
+
+    	BtnTabelas.setEffect(efeito.Efeito());
+    	
+    }
+
+    @FXML
+    void FecharSideBar(MouseEvent event) {
+
+    }
+
+    @FXML
+    void IrParaFuncionarios(MouseEvent event) {
+
+    }
+
+    @FXML
+    void IrParaFuncionarios2(MouseEvent event) {
+
+    }
+
+    @FXML
+    void IrParaInico(MouseEvent event) {
+
+    }
+
+    @FXML
+    void IrParaPerfil(MouseEvent event) {
+
+    }
+
+    @FXML
+    void IrParaProduto(MouseEvent event) {
+
+    }
+
+    @FXML
+    void IrParaProdutos2(MouseEvent event) {
+
+    }
+
+    @FXML
+    void IrParaRelatorio(MouseEvent event) {
+
+    }
+
+    @FXML
+    void IrParaRelatorios2(MouseEvent event) {
+
+    }
+
+    @FXML
+    void IrParaTabela(MouseEvent event) {
+
+    }
+
+    @FXML
+    void IrParaTabelas2(MouseEvent event) {
+
+    }
+
+    @FXML
+    void IrParaVendas(MouseEvent event) {
+
+    }
+
+    @FXML
+    void IrParaVendas2(MouseEvent event) {
+
+    }
+
+    @FXML
+    void Sair(MouseEvent event) {
+
+    	btnfuncionario.setEffect(null);
+    	
+    }
+
+    @FXML
+    void Sair2(MouseEvent event) {
+
+    	BtnProduto.setEffect(null);
+    	
+    }
+
+    @FXML
+    void Sair3(MouseEvent event) {
+
+    	BtnVendas.setEffect(null);
+    	
+    }
+
+    @FXML
+    void Sair4(MouseEvent event) {
+
+    	BtnRelatorio.setEffect(null);
+    	
+    }
+
+    @FXML
+    void Sair5(MouseEvent event) {
+
+    	BtnTabelas.setEffect(null);
+    	
+    }
+
+}

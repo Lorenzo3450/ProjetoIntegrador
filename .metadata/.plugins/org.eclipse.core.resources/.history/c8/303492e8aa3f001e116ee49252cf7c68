@@ -1,0 +1,28 @@
+package Principal.Telas.Gerente;
+
+import javafx.fxml.FXML;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
+
+public class TelaPrincipalGerenteController {
+
+    @FXML
+    private AnchorPane Painel;
+
+    @FXML
+    void btn(MouseEvent event) {
+    	
+    	Painel.setVisible(false);
+    	Painel.setDisable(true);
+    	
+    }
+
+    @FXML
+    void btn2(MouseEvent event) {
+
+    	Painel.setVisible(true);
+    	Painel.setDisable(false);
+    	
+    }
+    
+}
