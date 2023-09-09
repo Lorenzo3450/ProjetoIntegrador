@@ -1,0 +1,76 @@
+
+
+
+CREATE TABLE funcionario(
+nome_completo varchar(200) not null,
+cpf varchar(11)  not null,
+data_nasc date not null,
+telefone varchar(14) not null,
+email varchar(200) not null,
+id int auto_increment,
+senha varchar(50) not null,
+cargo varchar(50) ,
+salario double,
+CONSTRAINT pk_funci primary key (id,cpf)
+)ENGINE= MyISAM DEFAULT CHARSET= utf8mb4;
+
+
+
+
+
+create table perguntas(
+nome_meio_mae varchar(100) not null,
+primeira_escola varchar(150) not null,
+apelido_infancia varchar(100) not null,
+id_senha int auto_increment,
+FOREIGN KEY (id_senha) REFERENCES funcionario(id))ENGINE= MyISAM DEFAULT CHARSET= utf8mb4;
+
+CREATE TABLE endereco(
+logradouro varchar(100) not null,
+bairro  varchar(100) not null,
+cep  varchar(100) not null,
+cidade  varchar(100) not null,
+id_funci int auto_increment ,
+FOREIGN KEY (id_funci) REFERENCES funcionario(id))ENGINE= MyISAM DEFAULT CHARSET= utf8mb4;
+
+create table sessao(
+sessao int,
+id int primary key, 
+idFuncionario int,
+foreign key (idFuncionario) references funcionario (id))ENGINE= MyISAM DEFAULT CHARSET= utf8mb4;
+
+
+
+INSERT INTO sessao (sessao,id)
+VALUES (0,1);
+
+Select * from funcionario;
+
+INSERT INTO funcionario (nome_completo, cpf, data_nasc, telefone, email, senha, cargo)
+VALUES
+('Ana Silva', '12345678901', '1990-05-15', '11987654321', 'ana.silva@example.com', 'senhas123', 'Gerente'),
+('João Santos', '98765432102', '1985-08-23', '21987651234', 'joao.santos@example.com', 'senha456', 'Gestor'),
+('Maria Oliveira', '56789012303', '1993-03-10', '31912345678', 'maria.oliveira@example.com', 'minhasenha', 'Atendente'),
+('Pedro Souza', '23456789004', '1988-11-30', '51998765432', 'pedro.souza@example.com', '123456', 'Gerente'),
+('Laura Lima', '78901234505', '1992-07-20', '41987659876', 'laura.lima@example.com', 'abc123', 'Gestor'),
+('Rafael Fernandes', '34567890106', '1995-02-08', '71912345678', 'rafael.fernandes@example.com', 'senha789', 'Atendente'),
+('Carolina Alves', '01234567807', '1987-09-18', '81987654321', 'carolina.alves@example.com', 'minhasenha456', 'Gerente'),
+('Gabriel Costa', '67890123408', '1991-06-25', '61998761234', 'gabriel.costa@example.com', 'senha987', 'Gestor'),
+('Amanda Pereira', '23456789009', '1994-04-05', '91987658765', 'amanda.pereira@example.com', 'senha123', 'Atendente'),
+('Fernando Santos', '98765432110', '1989-12-15', '31912345678', 'fernando.santos@example.com', 'abcdef', 'Não-Definido'),
+('Juliana Rodrigues', '56789012311', '1998-09-28', '21987651234', 'juliana.rodrigues@example.com', 'senhajuliana', 'Não-Definido'),
+('Lucas Silva', '98765432112', '1996-06-14', '31912345678', 'lucas.silva@example.com', 'senhalucas', 'Não-Definido'),
+('Mariana Pereira', '23456789013', '2000-02-03', '51998765432', 'mariana.pereira@example.com', 'senhamariana', 'Não-Definido'),
+('Nick do Quack', '12345678912','2006-09-23','92993274226', 'nickdofutsal@123', 'cria0981', 'atendente'),
+('gabrielzinho','05303651207','2006-11-08','5592993274226','gaga@gmail.com','ga01briel02','gerente'),
+('Lorenzo','12332323232','2006-11-08','5592234567856','lolouzumakiplays@gmail.com','amonaruto123','gerente'),
+('MoysesPreto','05303651987','2006-11-08','5592993234526','moysesnegao@gmail.com','negao123','gestor');
+
+
+
+
+
+
+
+
+

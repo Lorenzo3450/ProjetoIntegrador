@@ -45,4 +45,9 @@
     <fullyQualifiedTypeName name="javafx.scene.control.Label"/>
     <fullyQualifiedTypeName name="javafx.scene.control.TextField"/>
     <fullyQualifiedTypeName name="javafx.print.PrinterJob"/>
+    <fullyQualifiedTypeName name="model.dao.login.CadastroModel"/>
+    <fullyQualifiedTypeName name="model.dao.login.RecuperSenhaModel"/>
+    <fullyQualifiedTypeName name="model.dao.Gerente.TabelaFuncionarioDao"/>
+    <fullyQualifiedTypeName name="model.dao.login.loguinModel"/>
+    <fullyQualifiedTypeName name="model.dao.login.MainModel"/>
 </qualifiedTypeNameHistroy>
