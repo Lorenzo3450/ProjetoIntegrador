@@ -1,0 +1,47 @@
+package controller;
+
+import javafx.application.Application;
+import javafx.scene.Scene;
+import javafx.scene.chart.BarChart;
+import javafx.scene.chart.CategoryAxis;
+import javafx.scene.chart.NumberAxis;
+import javafx.scene.chart.XYChart;
+import javafx.stage.Stage;
+
+public class MeuAplicativo extends Application {
+    @Override
+    public void start(Stage palco) throws Exception {
+        // Configurar os dados do gráfico
+        CategoryAxis eixoX = new CategoryAxis();
+        NumberAxis eixoY = new NumberAxis();
+        BarChart<String, Number> grafico = new BarChart<>(eixoX, eixoY);
+
+        // Configurar os dados do gráfico
+        grafico.setTitle("Meu Gráfico de Barras");
+
+        // Criar uma série de dados
+        XYChart.Series<String, Number> serie = new XYChart.Series<>();
+        serie.setName("Vendas 2023");
+
+        // Adicionar dados à série
+        serie.getData().add(new XYChart.Data<>("Janeiro", 200));
+        serie.getData().add(new XYChart.Data<>("Fevereiro", 350));
+        serie.getData().add(new XYChart.Data<>("Março", 420));
+        serie.getData().add(new XYChart.Data<>("Abril", 280));
+        serie.getData().add(new XYChart.Data<>("Maio", 600));
+
+        // Adicionar a série ao gráfico
+        grafico.getData().add(serie);
+
+        // Criar a cena e adicionar o gráfico
+        Scene cena = new Scene(grafico, 800, 600);
+        palco.setScene(cena);
+
+        palco.setTitle("Meu Gráfico JavaFX");
+        palco.show();
+    }
+
+    public static void main(String[] args) {
+        launch(args);
+    }
+}

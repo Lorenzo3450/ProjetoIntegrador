@@ -1,0 +1,42 @@
+package model.dao.Gerente;
+
+
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
+import controller.Ferramentas.Produto;
+import model.dao.ConexãoBD;
+
+public class RelatorioABCDao {
+
+    public static List<Produto> inicializaTabela() throws SQLException {
+        try (
+            Connection connection = ConexãoBD.Conexao();
+            Statement statement = connection.createStatement()) {
+            String query = "SELECT descricao, validade, quantidade, valor_compra, valor_venda, marca, codigo FROM produto";
+            ResultSet resultSet = statement.executeQuery(query);
+
+            List<Produto> produtos = new ArrayList<>();
+            while (resultSet.next()) {
+                Produto produto = new Produto(
+                    resultSet.getString("descricao"),
+                    resultSet.getDate("validade").toLocalDate(),
+                    resultSet.getInt("quantidade"),
+                    resultSet.getDouble("valor_compra"),
+                    resultSet.getDouble("valor_venda"),
+                    resultSet.getString("marca"),
+                    resultSet.getString("codigo")
+                );
+
+                produtos.add(produto);
+            }
+
+            statement.close();
+            connection.close();
+            return produtos;
+        }
+    }
+}

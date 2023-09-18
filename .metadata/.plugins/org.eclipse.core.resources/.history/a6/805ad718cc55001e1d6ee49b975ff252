@@ -1,0 +1,130 @@
+package controller.gerente;
+
+import javafx.fxml.FXML;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseEvent;
+import model.dao.Gerente.RelatorioABCDao;
+
+import java.util.List;
+
+import controller.Ferramentas.Produto;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+
+public class RelatorioABCController {
+
+    @FXML
+    private TableColumn<Produto, String> AcumuladaColumn;
+
+    @FXML
+    private ImageView BtnFiltro;
+
+    @FXML
+    private ImageView BtnImprimir;
+
+    @FXML
+    private ImageView BtnPesquisar;
+
+    @FXML
+    private TableColumn<Produto, String> CurvaColumn;
+
+    @FXML
+    private TableColumn<Produto, Double> FaturamentoColumn;
+
+    @FXML
+    private TableColumn<Produto, Double> PorcentagemColumn;
+
+    @FXML
+    private TableColumn<Produto, String> ProdutoColumn;
+
+    @FXML
+    private TextField TxtPesquisa;
+
+    @FXML
+    private TableView<Produto> tableView;
+
+    // Método para inicializar a tabela preenchendo todas as colunas
+    @FXML
+    void initialize() {
+        // Inicialize a coluna "Produto" com os dados dos produtos
+        ProdutoColumn.setCellValueFactory(cellData -> cellData.getValue().descricaoProperty());
+
+        // Inicialize a coluna "Faturamento" com os dados dos produtos
+        FaturamentoColumn.setCellValueFactory(cellData -> cellData.getValue().faturamentoProperty().asObject());
+
+        // Inicialize a coluna "Porcentagem" com os dados dos produtos
+        PorcentagemColumn.setCellValueFactory(cellData -> cellData.getValue().porcentagemProperty().asObject());
+
+        // Inicialize a coluna "Acumulada" com os dados dos produtos
+        // (substitua o tipo de dado e a propriedade apropriados)
+        AcumuladaColumn.setCellValueFactory(cellData -> cellData.getValue().getDetalhesLucro().nomeProdutoProperty());
+
+        // Inicialize a coluna "Curva" com os dados dos produtos
+        // (substitua o tipo de dado e a propriedade apropriados)
+        CurvaColumn.setCellValueFactory(cellData -> cellData.getValue().getDetalhesLucro().nomeProdutoProperty());
+
+        // Carregue os dados dos produtos da sua fonte de dados (por exemplo, do banco de dados)
+        RelatorioABCDao dao = new RelatorioABCDao();
+        List<Produto> produtosList = dao.obterProdutos(); // Substitua por seu método real
+        ObservableList<Produto> produtos = FXCollections.observableArrayList(produtosList);
+        
+        
+        System.out.println(produtosList);
+
+        // Adicione os dados à tabela
+        tableView.setItems(produtos);
+    }
+    
+    
+    
+    
+    @FXML
+    void EfeitoFiltro(MouseEvent event) {
+
+    }
+
+    @FXML
+    void EfeitoImprimir(MouseEvent event) {
+
+    }
+
+    @FXML
+    void Filtro(MouseEvent event) {
+
+    }
+
+    @FXML
+    void Pesquisar(MouseEvent event) {
+
+    }
+
+    @FXML
+    void PressionarEnter(KeyEvent event) {
+
+    }
+
+    @FXML
+    void SairFiltro(MouseEvent event) {
+
+    }
+
+    @FXML
+    void SairImprimir(MouseEvent event) {
+
+    }
+
+    @FXML
+    void imprimir(MouseEvent event) {
+
+    }
+
+    @FXML
+    void vol1(MouseEvent event) {
+
+    }
+
+}

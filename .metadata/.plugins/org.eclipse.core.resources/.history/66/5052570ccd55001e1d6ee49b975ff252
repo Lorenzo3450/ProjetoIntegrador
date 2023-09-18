@@ -1,0 +1,145 @@
+package controller.gerente;
+
+import javafx.fxml.FXML;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseEvent;
+import model.dao.Gerente.RelatorioABCDao;
+
+import java.util.List;
+import java.util.Collections; // Importe esta classe para ordenação
+
+import controller.Ferramentas.Produto;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+
+public class RelatorioABCController {
+
+    @FXML
+    private TableColumn<Produto, String> AcumuladaColumn;
+
+    @FXML
+    private ImageView BtnFiltro;
+
+    @FXML
+    private ImageView BtnImprimir;
+
+    @FXML
+    private ImageView BtnPesquisar;
+
+    @FXML
+    private TableColumn<Produto, String> CurvaColumn;
+
+    @FXML
+    private TableColumn<Produto, Double> FaturamentoColumn;
+
+    @FXML
+    private TableColumn<Produto, Double> PorcentagemColumn;
+
+    @FXML
+    private TableColumn<Produto, String> ProdutoColumn;
+
+    @FXML
+    private TextField TxtPesquisa;
+
+    @FXML
+    private TableView<Produto> tableView;
+
+ 
+    private ObservableList<Produto> produtosList = FXCollections.observableArrayList(); // Crie uma lista observável para armazenar seus produtos
+
+    // Método para calcular porcentagens e adicionar a curva
+    private void calcularPorcentagensEAdicionarCurva() {
+        // Ordenar a lista de produtos por faturamento em ordem decrescente
+        Collections.sort(produtosList, (produto1, produto2) -> {
+            double faturamento1 = produto1.getFaturamento();
+            double faturamento2 = produto2.getFaturamento();
+            return Double.compare(faturamento2, faturamento1);
+        });
+
+        double totalFaturamento = 0.0;
+
+        // Calcular o total do faturamento
+        for (Produto produto : produtosList) {
+            totalFaturamento += produto.getFaturamento();
+        }
+
+        double porcentagemAcumulada = 0.0;
+
+        // Calcular porcentagens e adicionar a curva
+        for (Produto produto : produtosList) {
+            double faturamentoProduto = produto.getFaturamento();
+            double porcentagemProduto = (faturamentoProduto / totalFaturamento) * 100;
+            porcentagemAcumulada += porcentagemProduto;
+            produto.setPorcentagem(porcentagemProduto);
+            if (porcentagemAcumulada <= 60) {
+                produto.setCurva("A");
+            } else if (porcentagemAcumulada <= 90) {
+                produto.setCurva("B");
+            } else {
+                produto.setCurva("C");
+            }
+        }
+    }
+
+    // Outros métodos do controlador
+
+    // Certifique-se de inicializar sua tabela e a coluna Curva com os valores da lista de produtos
+    @FXML
+    private void initialize() {
+        // Inicialize a tabela e colunas aqui
+        tableView.setItems(produtosList);
+        // Configure as colunas (Produto, Faturamento, Porcentagem, Curva) aqui
+    }
+    
+    
+    
+    @FXML
+    void EfeitoFiltro(MouseEvent event) {
+
+    }
+
+    @FXML
+    void EfeitoImprimir(MouseEvent event) {
+
+    }
+
+    @FXML
+    void Filtro(MouseEvent event) {
+
+    }
+
+    @FXML
+    void Pesquisar(MouseEvent event) {
+
+    }
+
+    @FXML
+    void PressionarEnter(KeyEvent event) {
+
+    }
+
+    @FXML
+    void SairFiltro(MouseEvent event) {
+
+    }
+
+    @FXML
+    void SairImprimir(MouseEvent event) {
+
+    }
+
+    @FXML
+    void imprimir(MouseEvent event) {
+
+    }
+
+    @FXML
+    void vol1(MouseEvent event) {
+
+    }
+
+}

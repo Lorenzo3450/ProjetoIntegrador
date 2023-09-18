@@ -1,0 +1,113 @@
+package controller.gerente;
+
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.fxml.FXML;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
+import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseEvent;
+
+import java.sql.SQLException;
+import java.util.Comparator;
+
+import controller.Ferramentas.Produto;
+import model.dao.Gerente.RelatorioABCDao;
+
+
+public class RelatorioABCController {
+
+    @FXML
+    private TableColumn<Produto, String> ProdutoColumn;
+
+    @FXML
+    private TableColumn<Produto, Double> FaturamentoColumn;
+
+    @FXML
+    private TableColumn<Produto, Double> PorcentagemColumn;
+
+    @FXML
+    private TextField TxtPesquisa;
+
+    @FXML
+    private TableView<Produto> tableView;
+
+    private ObservableList<Produto> produtos = FXCollections.observableArrayList();
+
+    @FXML
+    void initialize() {
+        try {
+            // Carregue os produtos do banco de dados usando o TabelaProdutoDao
+            produtos.addAll(RelatorioABCDao.inicializaTabela());
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        // Inicializa a tabela com os dados dos produtos
+        ProdutoColumn.setCellValueFactory(cellData -> cellData.getValue().descricaoProperty());
+        FaturamentoColumn.setCellValueFactory(cellData -> cellData.getValue().faturamentoProperty().asObject());
+        PorcentagemColumn.setCellValueFactory(cellData -> cellData.getValue().porcentagemProperty().asObject());
+
+        // Classifique os produtos por faturamento em ordem decrescente
+        produtos.sort(Comparator.comparing(Produto::getFaturamento).reversed());
+
+        // Calcule a porcentagem acumulada e defina-a nos produtos
+        double totalFaturamento = produtos.stream().mapToDouble(Produto::getFaturamento).sum();
+        double porcentagemAcumulada = 0.0;
+
+        for (Produto produto : produtos) {
+            double porcentagem = (produto.getFaturamento() / totalFaturamento) * 100.0;
+            porcentagemAcumulada += porcentagem;
+            produto.setPorcentagem(porcentagem);
+        }
+
+     
+        tableView.setItems(produtos);
+    }
+
+    @FXML
+    void EfeitoFiltro(MouseEvent event) {
+        // Implemente a lógica para filtrar os produtos, se necessário
+    }
+
+    @FXML
+    void EfeitoImprimir(MouseEvent event) {
+        // Implemente a lógica para imprimir o relatório, se necessário
+    }
+
+    @FXML
+    void Filtro(MouseEvent event) {
+        // Implemente a lógica para aplicar filtros, se necessário
+    }
+
+    @FXML
+    void Pesquisar(MouseEvent event) {
+        // Implemente a lógica para pesquisar produtos, se necessário
+    }
+
+    @FXML
+    void PressionarEnter(KeyEvent event) {
+        // Implemente a lógica para pressionar Enter, se necessário
+    }
+
+    @FXML
+    void SairFiltro(MouseEvent event) {
+        // Implemente a lógica para sair do filtro, se necessário
+    }
+
+    @FXML
+    void SairImprimir(MouseEvent event) {
+        // Implemente a lógica para sair da impressão, se necessário
+    }
+
+    @FXML
+    void imprimir(MouseEvent event) {
+        // Implemente a lógica para imprimir o relatório, se necessário
+    }
+
+    @FXML
+    void vol1(MouseEvent event) {
+        // Implemente a lógica para voltar, se necessário
+    }
+}

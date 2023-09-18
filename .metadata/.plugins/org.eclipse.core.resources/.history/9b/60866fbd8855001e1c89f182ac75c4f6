@@ -1,0 +1,122 @@
+package controller.gerente;
+
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.fxml.FXML;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
+import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseEvent;
+
+import java.sql.SQLException;
+import java.util.Comparator;
+
+import controller.Ferramentas.DetalhesLucro;
+import model.dao.Gerente.RelatorioABCDao;
+
+public class RelatorioABCController {
+
+    @FXML
+    private TableColumn<DetalhesLucro, String> ProdutoColumn;
+
+    @FXML
+    private TableColumn<DetalhesLucro, Integer> QuantidadeAdquiridaColumn;
+
+    @FXML
+    private TableColumn<DetalhesLucro, Integer> QuantidadeVendidaColumn;
+
+    @FXML
+    private TableColumn<DetalhesLucro, Double> ValorCompradoUnidadeColumn;
+
+    @FXML
+    private TableColumn<DetalhesLucro, Double> ValorVendidoUnidadeColumn;
+
+    @FXML
+    private TableColumn<DetalhesLucro, Double> CustoTotalColumn;
+
+    @FXML
+    private TableColumn<DetalhesLucro, Double> ReceitaTotalColumn;
+
+    @FXML
+    private TableColumn<DetalhesLucro, Double> LucroTotalColumn;
+
+    @FXML
+    private TextField TxtPesquisa;
+
+    @FXML
+    private TableView<DetalhesLucro> tableView;
+
+    private ObservableList<DetalhesLucro> detalhesLucro = FXCollections.observableArrayList();
+
+    @FXML
+    void initialize() {
+        try {
+            // Carregue os detalhes de lucro do banco de dados usando RelatorioABCDao
+            detalhesLucro.addAll(RelatorioABCDao.inicializaTabelaDetalhesLucro());
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        // Inicialize a tabela com os detalhes de lucro
+        ProdutoColumn.setCellValueFactory(cellData -> cellData.getValue().nomeProdutoProperty());
+        QuantidadeAdquiridaColumn.setCellValueFactory(cellData -> cellData.getValue().quantidadeAdquiridaProperty().asObject());
+        QuantidadeVendidaColumn.setCellValueFactory(cellData -> cellData.getValue().quantidadeVendidaProperty().asObject());
+        ValorCompradoUnidadeColumn.setCellValueFactory(cellData -> cellData.getValue().valorCompradoUnidadeProperty().asObject());
+        ValorVendidoUnidadeColumn.setCellValueFactory(cellData -> cellData.getValue().valorVendidoUnidadeProperty().asObject());
+        CustoTotalColumn.setCellValueFactory(cellData -> cellData.getValue().custoTotalProperty().asObject());
+        ReceitaTotalColumn.setCellValueFactory(cellData -> cellData.getValue().receitaTotalProperty().asObject());
+        LucroTotalColumn.setCellValueFactory(cellData -> cellData.getValue().lucroTotalProperty().asObject());
+
+        // Classifique os detalhes de lucro como desejado (por exemplo, por nome do produto)
+        detalhesLucro.sort(Comparator.comparing(DetalhesLucro::getNomeProduto));
+
+        tableView.setItems(detalhesLucro);
+    }
+
+
+    @FXML
+    void EfeitoFiltro(MouseEvent event) {
+        // Implemente a lógica para filtrar os detalhes de lucro, se necessário
+    }
+
+    @FXML
+    void EfeitoImprimir(MouseEvent event) {
+        // Implemente a lógica para imprimir o relatório, se necessário
+    }
+
+    @FXML
+    void Filtro(MouseEvent event) {
+        // Implemente a lógica para aplicar filtros, se necessário
+    }
+
+    @FXML
+    void Pesquisar(MouseEvent event) {
+        // Implemente a lógica para pesquisar detalhes de lucro, se necessário
+    }
+
+    @FXML
+    void PressionarEnter(KeyEvent event) {
+        // Implemente a lógica para pressionar Enter, se necessário
+    }
+
+    @FXML
+    void SairFiltro(MouseEvent event) {
+        // Implemente a lógica para sair do filtro, se necessário
+    }
+
+    @FXML
+    void SairImprimir(MouseEvent event) {
+        // Implemente a lógica para sair da impressão, se necessário
+    }
+
+    @FXML
+    void imprimir(MouseEvent event) {
+        // Implemente a lógica para imprimir o relatório, se necessário
+    }
+
+    @FXML
+    void vol1(MouseEvent event) {
+        // Implemente a lógica para voltar, se necessário
+    }
+}

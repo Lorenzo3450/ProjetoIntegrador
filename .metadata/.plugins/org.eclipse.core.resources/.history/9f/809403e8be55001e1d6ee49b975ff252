@@ -1,0 +1,80 @@
+package model.dao.Gerente;
+
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
+
+import controller.Ferramentas.DetalhesLucro;
+import controller.Ferramentas.Produto;
+import model.dao.ConexãoBD;
+
+public class RelatorioABCDao {
+
+	public static List<DetalhesLucro> inicializaTabelaDetalhesLucro() throws SQLException {
+	    try (
+	        Connection connection = ConexãoBD.Conexao();
+	        Statement statement = connection.createStatement()) {
+	        String query = "SELECT nome_produto, quantidade_adquirida, quantidade_vendida, valor_comprado_unidade, valor_vendido_unidade, custo_total, receita_total, lucro_total FROM detalhes_relatorio_de_lucros";
+	        ResultSet resultSet = statement.executeQuery(query);
+
+	        List<DetalhesLucro> detalhesLucro = new ArrayList<>();
+	        while (resultSet.next()) {
+	            DetalhesLucro detalhe = new DetalhesLucro(
+	                resultSet.getString("nome_produto"),
+	                resultSet.getInt("quantidade_adquirida"),
+	                resultSet.getInt("quantidade_vendida"),
+	                resultSet.getDouble("valor_comprado_unidade"),
+	                resultSet.getDouble("valor_vendido_unidade"),
+	                resultSet.getDouble("custo_total"),
+	                resultSet.getDouble("receita_total"),
+	                resultSet.getDouble("lucro_total")
+	            );
+
+	            detalhesLucro.add(detalhe);
+	        }
+
+	        // Adicione mensagens de log para verificar os detalhes de lucro buscados
+	        System.out.println("Detalhes de Lucro buscados do banco de dados com sucesso:");
+
+	        for (DetalhesLucro detalhe : detalhesLucro) {
+	            System.out.println(detalhe.toString());
+	        }
+
+	        return detalhesLucro;
+	    }
+	}
+	
+	public static List<Produto> inicializaTabelaProdutos() throws SQLException {
+        try (
+            Connection connection = ConexãoBD.Conexao();
+            Statement statement = connection.createStatement()) {
+            String query = "SELECT descricao, validade, quantidade, valor_comprado_unidade, valor_vendido_unidade, marca, codigo FROM produtos";
+            ResultSet resultSet = statement.executeQuery(query);
+
+            List<Produto> produtos = new ArrayList<>();
+            while (resultSet.next()) {
+                Produto produto = new Produto(
+                        resultSet.getString("descricao"),
+                        resultSet.getDate("validade"),
+                        resultSet.getInt("quantidade"),
+                        resultSet.getDouble("valor_comprado_unidade"),
+                        resultSet.getDouble("valor_vendido_unidade"),
+                        resultSet.getString("marca"),
+                        resultSet.getString("codigo")
+                );
+
+                produtos.add(produto);
+            }
+
+            return produtos;
+        }
+    }
+	
+	
+	
+	
+
+}
