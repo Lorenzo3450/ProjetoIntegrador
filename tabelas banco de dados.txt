@@ -10,7 +10,8 @@ email varchar(200) not null,
 id int auto_increment,
 senha varchar(50) not null,
 cargo varchar(50) ,
-salario double,
+salario
+ double,
 CONSTRAINT pk_funci primary key (id,cpf)
 )ENGINE= MyISAM DEFAULT CHARSET= utf8mb4;
 
@@ -39,38 +40,250 @@ id int primary key,
 idFuncionario int,
 foreign key (idFuncionario) references funcionario (id))ENGINE= MyISAM DEFAULT CHARSET= utf8mb4;
 
-
+UPDATE sessao SET sessao = 0 WHERE id = 1;
 
 INSERT INTO sessao (sessao,id)
 VALUES (0,1);
 
 Select * from funcionario;
 
-INSERT INTO funcionario (nome_completo, cpf, data_nasc, telefone, email, senha, cargo)
+
+INSERT INTO produtos (descricao, validade, quantidade, valor_comprado_unidade, valor_vendido_unidade, marca_produto, codigo_produto, id_fornecedor, id_secao, quantidade_vendida)
 VALUES
-('Ana Silva', '12345678901', '1990-05-15', '11987654321', 'ana.silva@example.com', 'senhas123', 'Gerente'),
-('João Santos', '98765432102', '1985-08-23', '21987651234', 'joao.santos@example.com', 'senha456', 'Gestor'),
-('Maria Oliveira', '56789012303', '1993-03-10', '31912345678', 'maria.oliveira@example.com', 'minhasenha', 'Atendente'),
-('Pedro Souza', '23456789004', '1988-11-30', '51998765432', 'pedro.souza@example.com', '123456', 'Gerente'),
-('Laura Lima', '78901234505', '1992-07-20', '41987659876', 'laura.lima@example.com', 'abc123', 'Gestor'),
-('Rafael Fernandes', '34567890106', '1995-02-08', '71912345678', 'rafael.fernandes@example.com', 'senha789', 'Atendente'),
-('Carolina Alves', '01234567807', '1987-09-18', '81987654321', 'carolina.alves@example.com', 'minhasenha456', 'Gerente'),
-('Gabriel Costa', '67890123408', '1991-06-25', '61998761234', 'gabriel.costa@example.com', 'senha987', 'Gestor'),
-('Amanda Pereira', '23456789009', '1994-04-05', '91987658765', 'amanda.pereira@example.com', 'senha123', 'Atendente'),
-('Fernando Santos', '98765432110', '1989-12-15', '31912345678', 'fernando.santos@example.com', 'abcdef', 'Não-Definido'),
-('Juliana Rodrigues', '56789012311', '1998-09-28', '21987651234', 'juliana.rodrigues@example.com', 'senhajuliana', 'Não-Definido'),
-('Lucas Silva', '98765432112', '1996-06-14', '31912345678', 'lucas.silva@example.com', 'senhalucas', 'Não-Definido'),
-('Mariana Pereira', '23456789013', '2000-02-03', '51998765432', 'mariana.pereira@example.com', 'senhamariana', 'Não-Definido'),
-('Nick do Quack', '12345678912','2006-09-23','92993274226', 'nickdofutsal@123', 'cria0981', 'atendente'),
-('gabrielzinho','05303651207','2006-11-08','5592993274226','gaga@gmail.com','ga01briel02','gerente'),
-('Lorenzo','12332323232','2006-11-08','5592234567856','lolouzumakiplays@gmail.com','amonaruto123','gerente'),
-('MoysesPreto','05303651987','2006-11-08','5592993234526','moysesnegao@gmail.com','negao123','gestor');
+    ('Produto A', '2023-12-31', 100, 10.0, 20.0, 'Marca A', 'ABC123', 1, 1, 50),
+    ('Produto B', '2024-06-30', 50, 8.0, 15.0, 'Marca B', 'XYZ456', 2, 1, 30),
+    ('Produto C', '2023-11-15', 75, 12.0, 25.0, 'Marca A', 'DEF789', 1, 2, 40),
+    ('Produto D', '2024-02-28', 60, 9.0, 18.0, 'Marca C', 'HIJ012', 3, 2, 20),
+    ('Produto E', '2024-04-20', 90, 7.0, 14.0, 'Marca B', 'LMN345', 2, 3, 10);
 
 
 
 
 
+CREATE TABLE produtos(
+    descricao varchar(100) not null,
+    validade DATE not null,
+    quantidade int not null,
+    valor_comprado_unidade float not null,
+    valor_vendido_unidade  float not null,
+    marca_produto varchar(100) not null,
+    codigo_produto varchar(200) primary key,
+    id_fornecedor int ,
+    id_secao int, 
+    quantidade_vendida INT NOT NULL,
+    FOREIGN KEY (id_fornecedor) REFERENCES fornecedor(id),
+    FOREIGN KEY (id_secao) REFERENCES secoes(id)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4;
 
+CREATE TABLE fornecedor(
+nome varchar(200) not null,
+email varchar(150) not null,
+telefone char (13) not null,
+endereco varchar(150) not null,
+id int primary key auto_increment);
+
+create table secoes(
+id int primary key auto_increment,
+nome_secao varchar(100) not null,
+lucro DECIMAL(10, 2) NOT NULL
+);
+
+select *from funcionario;
+
+-- Inserir uma seção de produtos de hortifrúti
+INSERT INTO secoes (nome_secao, lucro) VALUES ('Hortifrúti', 5000.00);
+
+-- Inserir uma seção de produtos de laticínios
+INSERT INTO secoes (nome_secao, lucro) VALUES ('Laticínios', 3000.50);
+
+-- Inserir uma seção de produtos de padaria
+INSERT INTO secoes (nome_secao, lucro) VALUES ('Padaria', 2500.75);
+
+-- Inserir uma seção de produtos de carne
+INSERT INTO secoes (nome_secao, lucro) VALUES ('Carnes', 7000.25);
+
+-- Inserir uma seção de produtos de limpeza
+INSERT INTO secoes (nome_secao, lucro) VALUES ('Limpeza', 1200.00);
+
+
+
+
+CREATE TABLE detalhes_relatorio_de_lucros (
+    id int primary key auto_increment,
+    id_relatorio int not null,
+    nome_produto VARCHAR(100) NOT NULL,
+    quantidade_adquirida INT NOT NULL,
+    quantidade_vendida INT NOT NULL,
+    valor_comprado_unidade DECIMAL(10, 2) NOT NULL,
+    valor_vendido_unidade DECIMAL(10, 2) NOT NULL,
+    custo_total DECIMAL(10, 2) GENERATED ALWAYS AS (quantidade_adquirida * valor_comprado_unidade) STORED,
+    receita_total DECIMAL(10, 2) GENERATED ALWAYS AS (quantidade_vendida * valor_vendido_unidade) STORED,
+    lucro_total DECIMAL(10, 2) GENERATED ALWAYS AS (receita_total - custo_total) STORED
+);
+
+CREATE TABLE relatorio_de_lucros (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    data_referencia DATE NOT NULL,
+    descricao VARCHAR(255) NOT NULL
+);
+
+
+
+CREATE TABLE detalhes_relatorio_de_gastos (
+    data_gasto DATE NOT NULL,
+    tipo_gasto VARCHAR(100) NOT NULL,
+    valor_gasto DECIMAL(10, 2) NOT NULL
+);
+
+
+create TABLE lucros_meses_do_ano(
+
+MesDoAno varchar(20),
+Ano int,
+LucroDoMes DECIMAL(20,2)
+
+);
+ 
+ 
+ INSERT INTO lucros_meses_do_ano (MesDoAno, Ano, LucroDoMes) VALUES ('Janeiro', 2023, 1500.00);
+INSERT INTO lucros_meses_do_ano (MesDoAno, Ano, LucroDoMes) VALUES ('Fevereiro', 2023, 1800.50);
+INSERT INTO lucros_meses_do_ano (MesDoAno, Ano, LucroDoMes) VALUES ('Março', 2023, 2200.75);
+INSERT INTO lucros_meses_do_ano (MesDoAno, Ano, LucroDoMes) VALUES ('Abril', 2023, 1900.20);
+INSERT INTO lucros_meses_do_ano (MesDoAno, Ano, LucroDoMes) VALUES ('Maio', 2023, 2100.00);
+INSERT INTO lucros_meses_do_ano (MesDoAno, Ano, LucroDoMes) VALUES ('Junho', 2023, 1800.50);
+INSERT INTO lucros_meses_do_ano (MesDoAno, Ano, LucroDoMes) VALUES ('Julho', 2023, 2400.75);
+INSERT INTO lucros_meses_do_ano (MesDoAno, Ano, LucroDoMes) VALUES ('Agosto', 2023, 2000.20);
+INSERT INTO lucros_meses_do_ano (MesDoAno, Ano, LucroDoMes) VALUES ('Setembro', 2023, 2150.80);
+INSERT INTO lucros_meses_do_ano (MesDoAno, Ano, LucroDoMes) VALUES ('Outubro', 2023, 2300.60);
+INSERT INTO lucros_meses_do_ano (MesDoAno, Ano, LucroDoMes) VALUES ('Novembro', 2023, 1980.40);
+INSERT INTO lucros_meses_do_ano (MesDoAno, Ano, LucroDoMes) VALUES ('Dezembro', 2023, 2050.25);
+
+
+
+                         
+create table opera_caixa(
+     id_caixa int,
+     id_atendente int,
+     data_operacao Date,                                                         
+     FOREIGN KEY (id_caixa) REFERENCES caixa(id),
+     FOREIGN KEY (id_atendente) REFERENCES funcionario(id)) ENGINE= MyISAM DEFAULT CHARSET= utf8mb4;
+
+
+insert into opera_caixa values (1,3,'2023-09-10'),
+							   (2,6,'2023-09-11'),    
+							   (3,9,'2023-09-12'),
+							   (4,14,'2023-09-13');
+
+
+
+
+create table formas_de_pagamento(
+id int primary key,                  
+tipo varchar(100) not null  
+);
+
+insert into formas_de_pagamento values (1,'cartão de crédito'),
+                                       (2,'cartao de débito'),
+									   (3, 'crédito e débito'),      
+                                       (4, 'pix QR code'),
+                                       (5, 'dinheiro');
+                                       
+create table transacao (
+id int primary key auto_increment,
+id_cliente int not null,
+id_forma_pagamento int,                                                                 
+valor_total DECIMAL(10,2) not null,
+FOREIGN KEY (id_forma_pagamento) REFERENCES formas_de_pagamento(id),
+FOREIGN KEY (id_cliente) REFERENCES cliente(id)) ENGINE= MyISAM DEFAULT CHARSET= utf8mb4;
+
+create table realiza_transacao(
+data_transacao date not null,
+hora_transacao time not null,                 
+id_transacao int,
+FOREIGN KEY (id_transacao) REFERENCES transacao(id)) ENGINE= MyISAM DEFAULT CHARSET= utf8mb4;
+
+-- Inserindo dados na tabela transacao
+INSERT INTO transacao (id_cliente,id_forma_pagamento, valor_total)
+VALUES
+    (1,1, 100.00),
+    (2,2, 50.00),
+    (3,3, 75.50);
+   
+
+INSERT INTO realiza_transacao (data_transacao, hora_transacao, id_transacao)
+VALUES
+    ('2023-09-17', '14:30:00', 1),
+    ('2023-09-17', '15:45:00', 2),
+    ('2023-09-17', '16:00:00', 3),
+    ('2023-09-17', '17:20:00', 4),
+    ('2023-09-17', '18:10:00', 5);
+    
+
+
+
+CREATE TABLE nota_fiscal (
+    id int PRIMARY KEY AUTO_INCREMENT,
+    data_emissao DATE NOT NULL,
+    id_forma_pagamento int,
+    id_cliente int not null,
+    FOREIGN KEY (id_forma_pagamento) REFERENCES formas_de_pagamento(id),
+    FOREIGN KEY (id_cliente) REFERENCES cliente(id)) ENGINE= MyISAM DEFAULT CHARSET= utf8mb4;
+
+CREATE TABLE produtos_em_nota_fiscal (
+    id int PRIMARY KEY AUTO_INCREMENT,
+    id_nota_fiscal int,
+    codigo_produto varchar(200),
+    quantidade int NOT NULL,
+	custo_total_produto DECIMAL(10, 2),
+    FOREIGN KEY (id_nota_fiscal) REFERENCES nota_fiscal(id),
+    FOREIGN KEY (codigo_produto) REFERENCES produtos(codigo_produto)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4;
+
+
+-- Inserir uma nota fiscal
+INSERT INTO nota_fiscal (id_cliente, data_emissao, id_forma_pagamento)
+VALUES (1,'2023-09-18', 1);
+INSERT INTO produtos_em_nota_fiscal (id_nota_fiscal, codigo_produto, quantidade)
+VALUES
+    (1, 'PROD001', 3),
+    (1, 'PROD002', 5 ),
+    (1, 'PROD003', 2 ),
+    (1, 'PROD004', 4),
+    (1, 'PROD005', 10 ),
+    (1, 'PROD006', 7 ),
+    (1, 'PROD007', 1 ),
+    (1, 'PROD008', 8 ),
+    (1, 'PROD009', 6 );
+   
+
+
+
+create table cliente(
+nome varchar(200) not null,
+id int auto_increment,
+cpf char(11) ,
+CONSTRAINT pk_cliente primary key (id,cpf)
+)ENGINE= MyISAM DEFAULT CHARSET= utf8mb4;
+
+INSERT INTO cliente (nome, cpf) VALUES
+    ('João da Silva', '12345678901'),
+    ('Maria Oliveira', '98765432109'),
+    ('Pedro Santos', '45678901234'),
+    ('Ana Pereira', '78901234567');
+    
+
+
+
+
+INSERT INTO produtos (descricao, validade, quantidade, valor_comprado_unidade, valor_vendido_unidade, marca_produto, codigo_produto) VALUES
+('Produto A', '2023-12-31', 100, 5.0, 10.0, 'Marca X', 'ABC123'),
+('Produto B', '2023-12-31', 200, 3.0, 8.0, 'Marca Y', 'DEF456'),
+('Produto C', '2023-12-31', 150, 4.0, 12.0, 'Marca Z', 'GHI789');
+    
+INSERT INTO detalhes_relatorio_de_lucros (id_relatorio, nome_produto, quantidade_adquirida, quantidade_vendida, valor_comprado_unidade, valor_vendido_unidade)
+VALUES (1, 'Produto A', 50, 30, 5.0, 10.0),
+       (1, 'Produto B', 80, 40, 3.0, 8.0),
+       (1, 'Produto C', 60, 25, 4.0, 12.0);
 
 
 

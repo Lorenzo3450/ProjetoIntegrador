@@ -1,0 +1,107 @@
+package controller.gerente;
+
+import javafx.fxml.FXML;
+import javafx.scene.chart.PieChart;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
+import model.dao.ConexãoBD;
+import model.dao.Gerente.GraficoDeLucroSecoesDao;
+import model.Secao;
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.util.List;
+import javafx.scene.control.Label;
+
+
+public class GraficoLucroSecoesController {
+
+	
+	@FXML
+    void initialize() {
+		
+		inicializarGraficoPizza();
+		
+	}
+	
+    @FXML
+    private ImageView BtnImprimir;
+
+    @FXML
+    private AnchorPane PainelGrafico;
+
+    @FXML
+    void EfeitoImprimir(MouseEvent event) {
+
+    }
+
+    @FXML
+    void SairImprimir(MouseEvent event) {
+
+    }
+
+    @FXML
+    void imprimir(MouseEvent event) {
+
+    }
+
+    @FXML
+    void vol1(MouseEvent event) {
+
+    }
+   
+ 
+    private void inicializarGraficoPizza() {
+        // Conectar ao banco de dados (substitua as informações da conexão conforme necessário)
+        try {
+            Connection conexao = ConexãoBD.Conexao();
+
+            // Criar uma instância do seu DAO
+            GraficoDeLucroSecoesDao dao = new GraficoDeLucroSecoesDao(conexao);
+
+            // Obter os dados das secoes para o gráfico
+            List<Secao> dadosSecoes = dao.obterDadosSecoesParaGrafico();
+
+            // Criar o gráfico de pizza
+            PieChart graficoPizza = new PieChart();
+
+            // Adicionar os dados do gráfico de pizza com base na lista de secoes
+            for (Secao secao : dadosSecoes) {
+                double lucro = secao.getLucro();
+                PieChart.Data data = new PieChart.Data(secao.getNomeSecao() + " (" + String.format("%.1f%%", (lucro / getTotalLucro(dadosSecoes)) * 100) + ")", lucro);
+                graficoPizza.getData().add(data);
+            }
+
+            // Definir as dimensões do gráfico (aumente conforme necessário)
+            graficoPizza.setMinWidth(1500); // Largura em pixels
+            graficoPizza.setMinHeight(600); // Altura em pixels
+
+            // Adicionar o gráfico de pizza ao PainelGrafico
+            PainelGrafico.getChildren().add(graficoPizza);
+
+            // Fechar a conexão com o banco de dados
+            conexao.close();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    
+    
+   
+
+    
+    // Método para calcular o total de lucro
+    private double getTotalLucro(List<Secao> dadosSecoes) {
+        double total = 0;
+        for (Secao secao : dadosSecoes) {
+            total += secao.getLucro();
+        }
+        return total;
+    }
+    
+    
+    
+    
+}

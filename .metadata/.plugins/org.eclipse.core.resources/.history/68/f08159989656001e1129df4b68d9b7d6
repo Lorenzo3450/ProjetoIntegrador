@@ -1,0 +1,73 @@
+package controller.gerente;
+
+import javafx.fxml.FXML;
+import javafx.scene.chart.PieChart;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
+import model.dao.ConexãoBD;
+import model.dao.Gerente.GraficoDeLucroSecoesDao;
+import model.Secao;
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.util.List;
+
+public class GraficoLucroSecoesController {
+
+    @FXML
+    private ImageView BtnImprimir;
+
+    @FXML
+    private AnchorPane PainelGrafico;
+
+    @FXML
+    void EfeitoImprimir(MouseEvent event) {
+
+    }
+
+    @FXML
+    void SairImprimir(MouseEvent event) {
+
+    }
+
+    @FXML
+    void imprimir(MouseEvent event) {
+
+    }
+
+    @FXML
+    void vol1(MouseEvent event) {
+
+    }
+
+    // Método para inicializar e exibir o gráfico de pizza
+    private void inicializarGraficoPizza() {
+        // Conectar ao banco de dados (substitua as informações da conexão conforme necessário)
+        try {
+        	Connection conexao = ConexãoBD.Conexao();
+
+            // Criar uma instância do seu DAO
+            GraficoDeLucroSecoesDao dao = new GraficoDeLucroSecoesDao(conexao);
+
+            // Obter os dados das secoes para o gráfico
+            List<Secao> dadosSecoes = dao.obterDadosSecoesParaGrafico();
+
+            // Criar o gráfico de pizza
+            PieChart graficoPizza = new PieChart();
+
+            // Adicionar os dados do gráfico de pizza com base na lista de secoes
+            for (Secao secao : dadosSecoes) {
+                graficoPizza.getData().add(new PieChart.Data(secao.getNomeSecao(), secao.getLucro()));
+            }
+
+            // Adicionar o gráfico de pizza ao PainelGrafico
+            PainelGrafico.getChildren().add(graficoPizza);
+
+            // Fechar a conexão com o banco de dados
+            conexao.close();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+}
