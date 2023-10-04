@@ -15,7 +15,7 @@ salario
 CONSTRAINT pk_funci primary key (id,cpf)
 )ENGINE= MyISAM DEFAULT CHARSET= utf8mb4;
 
-
+select *from funcionario;
 
 
 
@@ -60,20 +60,31 @@ VALUES
 
 
 
-CREATE TABLE produtos(
+CREATE TABLE produtos (
     descricao varchar(100) not null,
+    data_compra DATE not null, -- Adicionada a coluna data_compra
     validade DATE not null,
     quantidade int not null,
     valor_comprado_unidade float not null,
-    valor_vendido_unidade  float not null,
-    marca_produto varchar(100) not null,
+    valor_vendido_unidade float not null,
+    marca_produto varchar(100) ,
     codigo_produto varchar(200) primary key,
-    id_fornecedor int ,
-    id_secao int, 
-    quantidade_vendida INT NOT NULL,
+    id_fornecedor int,
+    id_secao int,
+    quantidade_vendida INT ,
+    Estoque_Minimo int,
     FOREIGN KEY (id_fornecedor) REFERENCES fornecedor(id),
     FOREIGN KEY (id_secao) REFERENCES secoes(id)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4;
+
+select *from produtos;
+
+-- Inserir alguns produtos de exemplo na tabela produtos
+INSERT INTO produtos (descricao, data_compra, validade, quantidade, valor_comprado_unidade, valor_vendido_unidade, marca_produto, codigo_produto, id_fornecedor, id_secao, quantidade_vendida, Estoque_Minimo)
+VALUES
+    ('Produto A', '2023-10-04', '2023-12-31', 100, 10.0, 15.0, 'Marca A', 'COD123', 1, 1, 0, 10),
+    ('Produto B', '2023-09-20', '2023-11-30', 50, 15.0, 25.0, 'Marca B', 'COD456', 2, 2, 0, 20),
+    ('Produto C', '2023-08-15', '2023-10-15', 75, 8.5, 12.0, 'Marca C', 'COD789', 3, 3, 0, 15);
 
 CREATE TABLE fornecedor(
 nome varchar(200) not null,
