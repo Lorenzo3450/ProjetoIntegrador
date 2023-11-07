@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-    <fullyQualifiedTypeName name="javafx.print.Printer"/>
     <fullyQualifiedTypeName name="javafx.print.Paper"/>
     <fullyQualifiedTypeName name="javafx.print.PageOrientation"/>
     <fullyQualifiedTypeName name="javafx.print.PageLayout"/>
@@ -49,7 +48,6 @@
     <fullyQualifiedTypeName name="javafx.scene.layout.AnchorPane"/>
     <fullyQualifiedTypeName name="javafx.scene.shape.Line"/>
     <fullyQualifiedTypeName name="javafx.scene.text.Text"/>
-    <fullyQualifiedTypeName name="javafx.scene.image.Image"/>
     <fullyQualifiedTypeName name="javafx.scene.layout.Pane"/>
     <fullyQualifiedTypeName name="javafx.scene.control.Button"/>
     <fullyQualifiedTypeName name="javafx.scene.control.Separator"/>
@@ -58,6 +56,8 @@
     <fullyQualifiedTypeName name="javafx.scene.control.Label"/>
     <fullyQualifiedTypeName name="javafx.event.ActionEvent"/>
     <fullyQualifiedTypeName name="model.DesignSistema"/>
-    <fullyQualifiedTypeName name="java.sql.SQLException"/>
     <fullyQualifiedTypeName name="model.dao.Gerente.PersonalizaSistemaDao"/>
+    <fullyQualifiedTypeName name="java.sql.SQLException"/>
+    <fullyQualifiedTypeName name="javafx.scene.image.Image"/>
+    <fullyQualifiedTypeName name="javafx.scene.shape.Rectangle"/>
 </qualifiedTypeNameHistroy>
