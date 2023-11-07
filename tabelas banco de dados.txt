@@ -77,14 +77,13 @@ CREATE TABLE produtos (
     FOREIGN KEY (id_secao) REFERENCES secoes(id)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4;
 
-select *from produtos;
+select *from funcionario;
 
--- Inserir alguns produtos de exemplo na tabela produtos
 INSERT INTO produtos (descricao, data_compra, validade, quantidade, valor_comprado_unidade, valor_vendido_unidade, marca_produto, codigo_produto, id_fornecedor, id_secao, quantidade_vendida, Estoque_Minimo)
-VALUES
-    ('Produto A', '2023-10-04', '2023-12-31', 100, 10.0, 15.0, 'Marca A', 'COD123', 1, 1, 0, 10),
-    ('Produto B', '2023-09-20', '2023-11-30', 50, 15.0, 25.0, 'Marca B', 'COD456', 2, 2, 0, 20),
-    ('Produto C', '2023-08-15', '2023-10-15', 75, 8.5, 12.0, 'Marca C', 'COD789', 3, 3, 0, 15);
+VALUES ('Betricorte', '2023-10-16', '2024-10-16', 100, 10.99, 19.99, 'Geolab', '7899095203273', 1, 2, 0, 10);
+INSERT INTO produtos (descricao, data_compra, validade, quantidade, valor_comprado_unidade, valor_vendido_unidade, marca_produto, codigo_produto, id_fornecedor, id_secao, quantidade_vendida, Estoque_Minimo)
+VALUES ('Creatina', '2023-10-16', '2024-10-16', 50, 10.99, 59.99, 'ProBiotica', '7896438200890', 1, 2, 0, 20);
+
 
 CREATE TABLE fornecedor(
 nome varchar(200) not null,
@@ -286,10 +285,6 @@ INSERT INTO cliente (nome, cpf) VALUES
 
 
 
-INSERT INTO produtos (descricao, validade, quantidade, valor_comprado_unidade, valor_vendido_unidade, marca_produto, codigo_produto) VALUES
-('Produto A', '2023-12-31', 100, 5.0, 10.0, 'Marca X', 'ABC123'),
-('Produto B', '2023-12-31', 200, 3.0, 8.0, 'Marca Y', 'DEF456'),
-('Produto C', '2023-12-31', 150, 4.0, 12.0, 'Marca Z', 'GHI789');
     
 INSERT INTO detalhes_relatorio_de_lucros (id_relatorio, nome_produto, quantidade_adquirida, quantidade_vendida, valor_comprado_unidade, valor_vendido_unidade)
 VALUES (1, 'Produto A', 50, 30, 5.0, 10.0),
