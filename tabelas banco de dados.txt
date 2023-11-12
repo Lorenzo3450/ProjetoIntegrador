@@ -98,7 +98,7 @@ nome_secao varchar(100) not null,
 lucro DECIMAL(10, 2) NOT NULL
 );
 
-select *from funcionario;
+
 
 -- Inserir uma seção de produtos de hortifrúti
 INSERT INTO secoes (nome_secao, lucro) VALUES ('Hortifrúti', 5000.00);
@@ -283,7 +283,15 @@ INSERT INTO cliente (nome, cpf) VALUES
     
 
 
-
+CREATE TABLE DesignSistema (
+   cor_principal VARCHAR(7),
+   cor_secundaria VARCHAR(7),
+   fundo_imagem varchar(500),
+   cor_terciaria VARCHAR(7),
+   tipo_fonte VARCHAR(50),
+	logo_imagem varchar(500)
+  
+);
 
     
 INSERT INTO detalhes_relatorio_de_lucros (id_relatorio, nome_produto, quantidade_adquirida, quantidade_vendida, valor_comprado_unidade, valor_vendido_unidade)

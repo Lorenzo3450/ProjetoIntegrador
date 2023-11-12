@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-    <fullyQualifiedTypeName name="javafx.print.Paper"/>
     <fullyQualifiedTypeName name="javafx.print.PageOrientation"/>
     <fullyQualifiedTypeName name="javafx.print.PageLayout"/>
     <fullyQualifiedTypeName name="javafx.scene.Node"/>
@@ -43,21 +42,22 @@
     <fullyQualifiedTypeName name="controller.Caixa.TelaDeVendaController"/>
     <fullyQualifiedTypeName name="javafx.scene.input.KeyEvent"/>
     <fullyQualifiedTypeName name="javafx.scene.input.KeyCode"/>
-    <fullyQualifiedTypeName name="controller.Main"/>
     <fullyQualifiedTypeName name="java.awt.Button"/>
     <fullyQualifiedTypeName name="javafx.scene.layout.AnchorPane"/>
     <fullyQualifiedTypeName name="javafx.scene.shape.Line"/>
     <fullyQualifiedTypeName name="javafx.scene.text.Text"/>
     <fullyQualifiedTypeName name="javafx.scene.layout.Pane"/>
-    <fullyQualifiedTypeName name="javafx.scene.control.Button"/>
-    <fullyQualifiedTypeName name="javafx.scene.control.Separator"/>
     <fullyQualifiedTypeName name="javafx.scene.effect.ColorAdjust"/>
     <fullyQualifiedTypeName name="controller.Ferramentas.EfeitoImage"/>
-    <fullyQualifiedTypeName name="javafx.scene.control.Label"/>
     <fullyQualifiedTypeName name="javafx.event.ActionEvent"/>
-    <fullyQualifiedTypeName name="model.DesignSistema"/>
-    <fullyQualifiedTypeName name="model.dao.Gerente.PersonalizaSistemaDao"/>
-    <fullyQualifiedTypeName name="java.sql.SQLException"/>
     <fullyQualifiedTypeName name="javafx.scene.image.Image"/>
     <fullyQualifiedTypeName name="javafx.scene.shape.Rectangle"/>
+    <fullyQualifiedTypeName name="java.sql.SQLException"/>
+    <fullyQualifiedTypeName name="model.DesignSistema"/>
+    <fullyQualifiedTypeName name="model.dao.Gerente.PersonalizaSistemaDao"/>
+    <fullyQualifiedTypeName name="javafx.scene.control.Button"/>
+    <fullyQualifiedTypeName name="controller.Main"/>
+    <fullyQualifiedTypeName name="javafx.scene.control.Label"/>
+    <fullyQualifiedTypeName name="javafx.scene.control.Separator"/>
+    <fullyQualifiedTypeName name="javax.swing.JOptionPane"/>
 </qualifiedTypeNameHistroy>
