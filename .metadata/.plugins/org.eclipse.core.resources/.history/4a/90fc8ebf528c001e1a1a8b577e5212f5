@@ -1,0 +1,110 @@
+package controller.Gestor;
+
+import java.sql.SQLException;
+
+import controller.Ferramentas.EditButtonCell;
+import controller.Ferramentas.EfeitoImage;
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.fxml.FXML;
+import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
+import javafx.scene.effect.ColorAdjust;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
+import model.Funcionario;
+import model.dao.Gerente.TabelaFuncionarioDao;
+
+public class TelaDeEnviarMensagemController {
+
+    @FXML
+    private ImageView BtnPesquisar;
+
+    @FXML
+    private ImageView ImagemDeFundo;
+
+    @FXML
+    private ImageView Logo;
+
+    @FXML
+    private TextArea Mensagem;
+
+    @FXML
+    private AnchorPane PainelDeCima;
+
+    @FXML
+    private Label TextoDoPainelDeCima;
+
+    @FXML
+    private TextField TxtPesquisa;
+
+    @FXML
+    private TableColumn<?, ?> cargoColumn;
+
+    @FXML
+    private TableColumn<?, ?> emailColumn;
+
+    @FXML
+    private TableColumn<?, ?> nomeCompletoColumn;
+
+    @FXML
+    private ScrollPane tableScrollPane;
+
+    @FXML
+    private TableView<?> tableView;
+
+    @FXML
+    private TextField txtAssunto;
+
+    @FXML
+    private TextField txtDestinatario;
+
+    @FXML
+    private TextField txtRemetente;
+    
+    
+	@FXML
+	private void initialize() {
+		
+	
+	
+		
+		
+		tableView.getItems().clear();
+		nomeCompletoColumn.setCellValueFactory(cellData -> cellData.getValue().nomeCompletoProperty());
+		
+		emailColumn.setCellValueFactory(cellData -> cellData.getValue().emailProperty());
+		cargoColumn.setCellValueFactory(cellData -> cellData.getValue().cargoProperty());
+		
+		try {
+			tableView.getItems().addAll(TabelaFuncionarioDao.inicializatabela());
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+	}
+    
+
+    @FXML
+    void AbrirSideBar(MouseEvent event) {
+
+    }
+
+    @FXML
+    void Pesquisar(MouseEvent event) {
+
+    }
+
+    @FXML
+    void PressionarEnter(KeyEvent event) {
+
+    }
+
+}

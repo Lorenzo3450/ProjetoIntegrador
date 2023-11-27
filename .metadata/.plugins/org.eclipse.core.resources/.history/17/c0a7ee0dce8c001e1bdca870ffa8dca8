@@ -1,0 +1,37 @@
+package controller.Ferramentas;
+
+import org.apache.commons.mail.DefaultAuthenticator;
+import org.apache.commons.mail.SimpleEmail;
+
+public class EnviaEmail {
+
+    public static void EnviarEmail(String Email, String senha, String assunto, String mensagem, String Destinatario) {
+
+    	System.setProperty("https.protocols", "TLSv1.2");
+    	
+        SimpleEmail email = new SimpleEmail();
+        email.setHostName("smtp.gmail.com");
+        email.setSmtpPort(587); // Use a porta 587 para TLS
+        email.setAuthenticator(new DefaultAuthenticator(Email, senha));
+        email.setStartTLSEnabled(true); // Habilita o uso de TLS
+        email.setSSLOnConnect(false); // Desabilita SSL
+
+        try {
+
+            email.setFrom(Email);
+            email.setSubject(assunto);
+            email.setMsg(mensagem);
+            email.addTo(Destinatario);
+            email.send();
+
+            System.out.println("Email enviado: " + Email + "," + senha + "," + assunto + "," + mensagem + "," + Destinatario);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void main(String[] arg) {
+        EnviarEmail("lorenzo.avizplay@gmail.com", "12343050lo", "teste", "oi", "lorenzo.aviz250@gmail.com");
+    }
+}

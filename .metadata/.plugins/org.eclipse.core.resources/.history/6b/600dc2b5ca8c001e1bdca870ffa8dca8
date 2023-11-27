@@ -1,0 +1,40 @@
+package controller.Ferramentas;
+
+import org.apache.commons.mail.DefaultAuthenticator;
+import org.apache.commons.mail.SimpleEmail;
+
+public class EnviaEmail {
+
+	
+	public static void EnviarEmail(String Email,String senha, String assunto,String mensagem,String Destinatario) {
+	
+		
+		
+		SimpleEmail email = new SimpleEmail();
+		email.setHostName("smtp.gmail.com");
+		email.setSmtpPort(465);
+		email.setAuthenticator(new DefaultAuthenticator(Email, senha));
+		email.setSSLOnConnect(true);
+		
+		try {
+			
+			email.setFrom(Email);
+			email.setSubject(assunto);
+			email.setMsg(mensagem);
+			email.addTo(Destinatario);
+			
+            email.send();
+
+			System.out.println("email enviado :"+Email+","+senha+","+assunto+","+mensagem+","+Destinatario);
+			
+		} catch (Exception e) {
+			System.out.println("erro");		}
+		
+		
+		
+		
+		
+	}
+	
+	
+}

@@ -1,0 +1,70 @@
+package controller.Ferramentas;
+
+import org.apache.commons.mail.DefaultAuthenticator;
+import org.apache.commons.mail.SimpleEmail;
+
+import java.util.Properties;
+import javax.net.ssl.SSLContext;
+import javax.net.ssl.TrustManager;
+import javax.net.ssl.X509TrustManager;
+import java.security.cert.X509Certificate;
+
+public class EnviaEmail {
+
+    public static void EnviarEmail(String Email, String senha, String assunto, String mensagem, String Destinatario) {
+
+        // Configuração de confiança para aceitar todos os certificados
+        TrustManager[] trustAllCerts = new TrustManager[]{
+            new X509TrustManager() {
+                public java.security.cert.X509Certificate[] getAcceptedIssuers() {
+                    return null;
+                }
+
+                public void checkClientTrusted(
+                    java.security.cert.X509Certificate[] certs, String authType) {
+                }
+
+                public void checkServerTrusted(
+                    java.security.cert.X509Certificate[] certs, String authType) {
+                }
+            }
+        };
+
+        try {
+            // Configura o contexto SSL com a confiança personalizada
+            SSLContext sslContext = SSLContext.getInstance("TLS");
+            sslContext.init(null, trustAllCerts, new java.security.SecureRandom());
+
+            // Define o contexto SSL para a conexão SMTP
+            Properties props = new Properties();
+            props.put("mail.smtp.starttls.enable", "true");
+            props.put("mail.smtp.ssl.trust", "smtp.gmail.com");
+            props.put("mail.smtp.ssl.context", sslContext);
+
+            SimpleEmail email = new SimpleEmail();
+            email.setMailSession(props);
+            email.setHostName("smtp.gmail.com");
+            email.setSmtpPort(587); // Use a porta 587 para TLS
+            email.setAuthenticator(new DefaultAuthenticator(Email, senha));
+            email.setStartTLSEnabled(true); // Habilita o uso de TLS
+            email.setSSLOnConnect(false); // Desabilita SSL
+            email.setDebug(true); // Isso permite que você veja mais informações sobre o processo de envio no console de saída
+
+            email.setFrom(Email);
+            email.setSubject(assunto);
+            email.setMsg(mensagem);
+            email.addTo(Destinatario);
+            email.send();
+
+            System.out.println("Email enviado: " + Email + "," + senha + "," + assunto + "," + mensagem + "," + Destinatario);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void main(String[] arg) {
+        System.setProperty("https.protocols", "TLSv1.2");
+        EnviarEmail("lorenzo.avizplay@gmail.com", "12343050lo", "teste", "oi", "lorenzo.aviz250@gmail.com");
+    }
+}
