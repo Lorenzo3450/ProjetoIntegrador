@@ -1,0 +1,5 @@
+package controller.Caixa;
+
+public class PagamentoEmPixController {
+
+}
