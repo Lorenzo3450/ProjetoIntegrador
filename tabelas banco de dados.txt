@@ -15,7 +15,33 @@ salario
 CONSTRAINT pk_funci primary key (id,cpf)
 )ENGINE= MyISAM DEFAULT CHARSET= utf8mb4;
 
+ALTER TABLE funcionario
+ADD COLUMN EmailDeTrabalho VARCHAR(200),
+ADD COLUMN senhaEmail VARCHAR(50);
+
+CREATE TABLE informacoesPessoais (
+    EmailDeTrabalho VARCHAR(200),
+    senha VARCHAR(50),
+    id_funci INT,
+    FOREIGN KEY (id_funci) REFERENCES funcionario(id)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+
+
+create table informacoesDoSuperMercado(
+Nome varchar(100),
+EmailComercial varchar(200),
+senha varchar(50),
+id int primary key
+
+);
+
+INSERT INTO  informacoesDoSuperMercado(id)
+VALUES (1);
+
 select *from funcionario;
+
+
 
 
 
@@ -32,7 +58,8 @@ bairro  varchar(100) not null,
 cep  varchar(100) not null,
 cidade  varchar(100) not null,
 id_funci int auto_increment ,
-FOREIGN KEY (id_funci) REFERENCES funcionario(id))ENGINE= MyISAM DEFAULT CHARSET= utf8mb4;
+FOREIGN KEY (id_funci) REFERENCES funcionario(id)
+)ENGINE= MyISAM DEFAULT CHARSET= utf8mb4;
 
 create table sessao(
 sessao int,
