@@ -1,0 +1,147 @@
+package controller.Caixa;
+
+import java.io.IOException;
+
+import controller.Main;
+import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
+import javafx.stage.StageStyle;
+
+public class PagamentoEmDinheiroController {
+
+    @FXML
+    private ImageView ImagemDeFundo;
+
+
+    @FXML
+    private AnchorPane Painel;
+    
+    @FXML
+    private ImageView Logo;
+
+    @FXML
+    private AnchorPane PainelDeCima;
+
+    @FXML
+    private Label TextoDoPainelDeCima;
+
+    @FXML
+    private TextField txtSubTotal;
+
+    @FXML
+    private TextField txtTotalRecebido;
+
+    @FXML
+    private TextField txtTroco;
+
+    double subtotal;
+    
+    
+    @FXML
+    private void initialize() {
+       
+    	subtotal=TelaDeVendaController.subtotal;
+    	txtTotalRecebido.requestFocus();
+    	
+    	   Painel.addEventFilter(KeyEvent.KEY_PRESSED, event -> {
+    	        if (event.getCode() == KeyCode.F1) {
+    	           try {
+   				
+   				} catch (Exception e) {
+   					// TODO Auto-generated catch block
+   					e.printStackTrace();
+   				}
+    	            System.out.println("Tecla F12 foi pressionada");
+    	        }
+    	    });
+     
+    	
+    }
+    
+    
+    @FXML
+    void calcularTroco() {
+        try {
+            double totalRecebido = Double.parseDouble(txtTotalRecebido.getText());
+            double troco = totalRecebido - subtotal;
+            txtTroco.setText(String.format("%.2f", troco));
+        } catch (NumberFormatException e) {
+            txtTroco.setText("Erro");
+        }
+    }
+    
+    
+    
+    @FXML
+    void onTotalRecebidoKeyPressed(KeyEvent event) {
+        if (event.getCode() == KeyCode.ENTER) {
+            calcularTroco();
+        }
+    }
+    
+    
+    
+    @FXML
+    void AbrirSideBar(MouseEvent event) {
+    	
+    	 try {
+ 	        // Carregue a cena da barra lateral a partir do arquivo FXML
+ 	        FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/gerente/SideBarGerente.fxml"));
+ 	        AnchorPane sideBarRoot = loader.load();
+
+ 	        // Crie uma nova janela para exibir a cena da barra lateral
+ 	        Stage sideBarStage = new Stage();
+ 	        sideBarStage.initStyle(StageStyle.UNDECORATED);
+ 	        Scene sideBarScene = new Scene(sideBarRoot);
+ 	        sideBarStage.setScene(sideBarScene);
+
+ 	        sideBarStage.setX(0);
+ 	        sideBarStage.setY(0);
+ 	        // Exiba a janela da barra lateral
+ 	        sideBarStage.show();
+ 	    } catch (IOException e) {
+ 	        e.printStackTrace();
+ 	    }
+ 	
+ 	
+    	
+    	
+    	
+    }
+    
+    @FXML
+    void cenaExibida() {
+        // Este método será chamado quando a cena for exibida
+        System.out.println("A cena foi exibida");
+
+        // Coloque aqui o código que você deseja executar quando a cena for exibida
+    }
+    
+    
+    private void trocarCena() {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/caminho/para/outra/Cena.fxml"));
+            AnchorPane novaCenaRoot = loader.load();
+            Scene novaCena = new Scene(novaCenaRoot);
+
+            Stage stage = (Stage) Painel.getScene().getWindow();
+            stage.setScene(novaCena);
+
+            // Defina o método cenaExibida para ser chamado quando a nova cena for exibida
+            stage.setOnShown(event -> cenaExibida());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    
+
+}

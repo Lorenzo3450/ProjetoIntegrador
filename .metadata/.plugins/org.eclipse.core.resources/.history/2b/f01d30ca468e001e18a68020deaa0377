@@ -1,0 +1,5 @@
+package model.dao.Caixa;
+
+public class PagamentoDao {
+
+}

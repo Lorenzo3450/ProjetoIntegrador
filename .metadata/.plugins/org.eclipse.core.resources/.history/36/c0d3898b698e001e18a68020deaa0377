@@ -1,0 +1,50 @@
+package model.Gestor;
+
+import java.util.Date;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.text.SimpleDateFormat;
+import model.dao.ConexãoBD;
+
+public class TelaDeCadastrarProdutoDao {
+
+    public static void cadastrarProduto(
+            String descricao, 
+            String dataCompra, 
+            String validade, 
+            int quantidade, 
+            float valorCompradoUnidade, 
+            float valorVendidoUnidade, 
+            String marcaProduto, 
+            String codigoProduto, 
+            int idFornecedor, 
+            int idSecao,  
+            int estoqueMinimo,
+            int quantidadeDaCompra) throws SQLException {
+
+        try (
+            Connection connection = ConexãoBD.Conexao();
+            PreparedStatement statement = connection.prepareStatement(
+                    "INSERT INTO produtos (descricao, data_compra, validade, quantidade, valor_comprado_unidade, " +
+                    "valor_vendido_unidade, marca_produto, codigo_produto, id_fornecedor, id_secao, " +
+                    "Estoque_Minimo, quantidade_da_compra) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)")
+        ) {
+            statement.setString(1, descricao);
+            statement.setString(2, dataCompra);
+            statement.setString(3, validade);
+            statement.setInt(4, quantidade);
+            statement.setFloat(5, valorCompradoUnidade);
+            statement.setFloat(6, valorVendidoUnidade);
+            statement.setString(7, marcaProduto);
+            statement.setString(8, codigoProduto);
+            statement.setInt(9, idFornecedor);
+            statement.setInt(10, idSecao);
+            statement.setInt(11, estoqueMinimo);
+            statement.setInt(12, quantidadeDaCompra);
+
+            statement.executeUpdate();
+        }
+    }
+
+}

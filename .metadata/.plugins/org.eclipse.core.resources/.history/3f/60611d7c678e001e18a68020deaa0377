@@ -1,0 +1,85 @@
+package controller.Gestor;
+
+import javafx.fxml.FXML;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
+
+public class TeladeCadastraProdutoController {
+
+    @FXML
+    private Button BtnEnviar;
+
+    @FXML
+    private ImageView ImagemDeFundo;
+
+    @FXML
+    private ImageView Logo;
+
+    @FXML
+    private AnchorPane PainelDeCima;
+
+    @FXML
+    private AnchorPane PainelPrincipal;
+
+    @FXML
+    private Label TextoDoPainelDeCima;
+
+    @FXML
+    private Label TextoDoPainelDeCima1;
+
+    @FXML
+    private TextField TxtCodigoDeBarras;
+
+    @FXML
+    private TextField TxtDataCompra;
+
+    @FXML
+    private TextField TxtDescricao;
+
+    @FXML
+    private TextField TxtFornecedor;
+
+    @FXML
+    private TextField TxtMarcaDoProduto;
+
+    @FXML
+    private TextField TxtQtdAdquirida;
+
+    @FXML
+    private TextField TxtQtdCompraAutomatica;
+
+    @FXML
+    private TextField TxtQtdMinima;
+
+    @FXML
+    private TextField TxtSetor;
+
+    @FXML
+    private TextField TxtValidade;
+
+    @FXML
+    private TextField TxtValorCompra;
+
+    @FXML
+    private TextField TxtValorDeVenda;
+
+    @FXML
+    void AbrirSideBar(MouseEvent event) {
+
+    }
+
+    @FXML
+    void AtivarCompraAutomatica(MouseEvent event) {
+
+    }
+
+    @FXML
+    void Cadastrar(MouseEvent event) {
+
+    }
+
+}
